@@ -3,11 +3,11 @@ package test;
 import java.util.Arrays;
 
 /*
-This class represents an approximate 3N reduction in total pointers used
+This class represents an approximate 3N reduction in total reference used
 where N is the total number of neurons. The effect is minimal because the
 pointers needed is O(N^2).
  */
-public class ReducedNetwork {
+Public class ReducedNetwork {
 
     public final double MIN_BIAS = -0.5;
     public final double MAX_BIAS = 0.7;
