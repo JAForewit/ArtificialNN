@@ -1,8 +1,3 @@
-/*
-This code is adapted from Flinn Eggers and his "NN - Fully Connected Tutorial" in Java
-Link to his youtube channel: https://www.youtube.com/channel/UCaKAU8vQzS-_e5xt7NSK3Xw
- */
-
 package Network;
 
 import parser.*;
