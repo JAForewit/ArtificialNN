@@ -1,3 +1,8 @@
+/*
+This class is adapted from Flinn Eggers "NN - Fully Connected Tutorial"
+Here is a link to his channel: https://www.youtube.com/channel/UCaKAU8vQzS-_e5xt7NSK3Xw
+ */
+
 package Network;
 
 import parser.*;
