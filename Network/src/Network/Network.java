@@ -16,7 +16,7 @@ public class Network {
     public final int OUTPUT_SIZE;
     public final int[] LAYER_SIZES;
     public final int NETWORK_SIZE;
-    public final double MIN_BIAS = -0.5;
+    public final double MIN_BIAS = -0.7;
     public final double MAX_BIAS = 0.7;
     public final double MIN_WEIGHT = -1;
     public final double MAX_WEIGHT = 1;
