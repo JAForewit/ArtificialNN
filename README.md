@@ -1,9 +1,7 @@
 # Neural-Net
-Refactored Neural Network in Java (Adapted from Flinn Eggers)
+This repository is a refactored artificial neural network written in Java (Adapted from Flinn Eggers).
 
-**The Goal:** Create a generalized neural network that can be fed varying inputs that could be applied to many situations.
+**The Goal:** implement and succesfuly train an ANN.
 
-Specifically, this will be used for creating strategic AIs for custom games.
+**End Result:** I completed the proejct and optimized a few operations. This was a great learning experience and has led to the birth of a new project: [Organic Neural Network](https://www.github.com/JAForewit/OrganicDNN).
 
-Next process:
-Implimenting Strassen's Algorithm to improve the network at high loads and neuron numbers. In theory this could improve the Big-O of the network.
