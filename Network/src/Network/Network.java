@@ -5,12 +5,16 @@ Here is a link to his channel: https://www.youtube.com/channel/UCaKAU8vQzS-_e5xt
 
 package Network;
 
+import TrainSet.*;
 import parser.*;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Network {
+    private static final Logger LOGGER = Logger.getLogger( Network.class.getName() );
 
     public final int INPUT_SIZE;
     public final int OUTPUT_SIZE;
@@ -92,16 +96,17 @@ public class Network {
         }
     }
 
-    public void trainBatch(double[][] inputs, double[][] targets, double rate, int iterations) {
-        if (inputs.length != targets.length) return;
-        for (int i = 0; i < inputs.length; i++) {
-            if (inputs[i].length != INPUT_SIZE || targets[i].length != OUTPUT_SIZE) return;
+    public void train(TrainSet set, int loops, int batchSize, double rate) {
+        if (set.getINPUT_SIZE() != INPUT_SIZE || set.getTARGET_SIZE() != OUTPUT_SIZE) {
+            LOGGER.log(Level.SEVERE, "Passed a TrainSet with an invalid input and target size to train()."
+                    + " Expected inputs[" + INPUT_SIZE + "], targets[" + OUTPUT_SIZE + "].");
+            return;
         }
-
-        for (int j = 0; j < iterations; j++) {
-            for (int i = 0; i < inputs.length; i++) {
-                calculateOutput(inputs[i]);
-                backpropError(targets[i]);
+        for (int i = 0; i < loops; i++) {
+            TrainSet batch = set.extractBatch(batchSize);
+            for (int j=0; j < batchSize; j++) {
+                calculateOutput(batch.getInput((j)));
+                backpropError(batch.getTarget(j));
                 updateWeights(rate);
             }
         }
