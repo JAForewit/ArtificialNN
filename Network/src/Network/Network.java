@@ -6,7 +6,6 @@ Here is a link to his channel: https://www.youtube.com/channel/UCaKAU8vQzS-_e5xt
 package Network;
 
 import TrainSet.*;
-import parser.*;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Level;
@@ -114,62 +113,6 @@ public class Network {
 
     public double[] getLastOutput () {
         return output[NETWORK_SIZE-1];
-    }
-
-    //********** Relies on the parser package ********
-    public void saveNetwork(String fileName) throws Exception {
-        Parser p = new Parser();
-        p.create(fileName);
-        Node root = p.getContent();
-        Node netw = new Node("Network");
-        Node ly = new Node("Layers");
-        netw.addAttribute(new Attribute("sizes", Arrays.toString(this.LAYER_SIZES)));
-        netw.addChild(ly);
-        root.addChild(netw);
-        for (int layer = 1; layer < this.NETWORK_SIZE; layer++) {
-
-            Node c = new Node("" + layer);
-            ly.addChild(c);
-            Node w = new Node("weights");
-            Node b = new Node("biases");
-            c.addChild(w);
-            c.addChild(b);
-
-            b.addAttribute("values", Arrays.toString(this.bias[layer]));
-
-            for (int we = 0; we < this.weights[layer].length; we++) {
-
-                w.addAttribute("" + we, Arrays.toString(weights[layer][we]));
-            }
-        }
-        p.close();
-    }
-
-    //********** Relies on the parser package ********
-    public static Network loadNetwork(String fileName) throws Exception {
-
-        Parser p = new Parser();
-
-        p.load(fileName);
-        String sizes = p.getValue(new String[] { "Network" }, "sizes");
-        int[] si = ParserTools.parseIntArray(sizes);
-        Network ne = new Network(si);
-
-        for (int i = 1; i < ne.NETWORK_SIZE; i++) {
-            String biases = p.getValue(new String[] { "Network", "Layers", new String(i + ""), "biases" }, "values");
-            double[] bias = ParserTools.parseDoubleArray(biases);
-            ne.bias[i] = bias;
-
-            for(int n = 0; n < ne.LAYER_SIZES[i]; n++){
-
-                String current = p.getValue(new String[] { "Network", "Layers", new String(i + ""), "weights" }, ""+n);
-                double[] val = ParserTools.parseDoubleArray(current);
-
-                ne.weights[i][n] = val;
-            }
-        }
-        p.close();
-        return ne;
     }
 
     //Returns the Mean Squared Error between the target and output given a set of inputs
