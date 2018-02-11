@@ -104,7 +104,7 @@ public class Network {
         }
         for (int i = 0; i < loops; i++) {
             TrainSet batch = set.extractBatch(batchSize);
-            for (int j=0; j < batchSize; j++) {
+            for (int j=0; j < batch.size(); j++) {
                 calculateOutput(batch.getInput((j)));
                 backpropError(batch.getTarget(j));
                 updateWeights(rate);
