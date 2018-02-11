@@ -6,7 +6,6 @@ Here is a link to his channel: https://www.youtube.com/channel/UCaKAU8vQzS-_e5xt
 package Network;
 
 import TrainSet.*;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
